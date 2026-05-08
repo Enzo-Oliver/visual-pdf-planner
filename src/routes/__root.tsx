@@ -75,11 +75,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "ChamaServ — Conecte-se a profissionais de confiança" },
       { name: "description", content: "Encontre eletricistas, pedreiros, diaristas e pintores verificados em Fortaleza. Avaliações reais, agendamento rápido e pagamento seguro." },
       { name: "author", content: "ChamaServ" },
-      { property: "og:title", content: "ChamaServ — Profissionais autônomos a um clique" },
-      { property: "og:description", content: "Plataforma que conecta clientes a prestadores de serviço verificados em Fortaleza-CE." },
+      { property: "og:title", content: "ChamaServ — Conecte-se a profissionais de confiança" },
+      { property: "og:description", content: "Encontre eletricistas, pedreiros, diaristas e pintores verificados em Fortaleza. Avaliações reais, agendamento rápido e pagamento seguro." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@ChamaServ" },
+      { name: "twitter:title", content: "ChamaServ — Conecte-se a profissionais de confiança" },
+      { name: "twitter:description", content: "Encontre eletricistas, pedreiros, diaristas e pintores verificados em Fortaleza. Avaliações reais, agendamento rápido e pagamento seguro." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/3195b696-b825-44d1-88b7-b7908e57be9b" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/3195b696-b825-44d1-88b7-b7908e57be9b" },
     ],
     links: [
       {
