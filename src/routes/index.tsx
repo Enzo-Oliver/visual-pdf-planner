@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import {
   Search, MapPin, Star, Shield, Zap, MessageCircle, Calendar, CheckCircle2,
@@ -44,8 +44,12 @@ function Index() {
             <a href="#para-pros" className="hover:text-foreground">Sou prestador</a>
           </nav>
           <div className="flex items-center gap-2">
-            <Button variant="ghost" size="sm">Entrar</Button>
-            <Button variant="flame" size="sm">Cadastrar</Button>
+            <Button asChild variant="ghost" size="sm">
+              <Link to="/login">Entrar</Link>
+            </Button>
+            <Button asChild variant="flame" size="sm">
+              <Link to="/cadastro">Cadastrar</Link>
+            </Button>
           </div>
         </div>
       </header>
@@ -226,7 +230,9 @@ function Index() {
                 Cadastre-se grátis, receba pedidos qualificados na sua região e construa sua reputação com avaliações transparentes.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Button variant="night" size="xl">Cadastrar como profissional</Button>
+                <Button asChild variant="night" size="xl">
+                  <Link to="/cadastro">Cadastrar como profissional</Link>
+                </Button>
                 <Button variant="ghost" size="xl" className="text-primary-foreground hover:bg-white/10">Saiba mais</Button>
               </div>
             </div>
