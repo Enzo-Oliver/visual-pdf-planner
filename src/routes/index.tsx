@@ -109,7 +109,7 @@ function Index() {
           </div>
 
           <div className="relative">
-            {/* teal accent block, parafuzo-style */}
+            {/* orange accent block */}
             <div className="absolute -bottom-4 -right-4 hidden h-[88%] w-[88%] rounded-[2rem] bg-primary/90 lg:block" />
             <img
               src={heroPro}
