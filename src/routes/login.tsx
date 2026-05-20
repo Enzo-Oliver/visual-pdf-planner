@@ -3,7 +3,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Flame, Mail, Lock, ArrowLeft } from "lucide-react";
+import { Mail, Lock, ArrowLeft } from "lucide-react";
+import logo from "@/assets/logo-chamaserv.png";
 
 export const Route = createFileRoute("/login")({
   component: LoginPage,
@@ -38,11 +39,8 @@ function LoginPage() {
         className="relative hidden flex-col justify-between p-10 text-primary-foreground lg:flex"
         style={{ backgroundImage: "var(--gradient-flame)" }}
       >
-        <Link to="/" className="flex items-center gap-2 font-display text-xl font-bold">
-          <span className="grid h-9 w-9 place-items-center rounded-xl bg-white/15 backdrop-blur-sm">
-            <Flame className="h-5 w-5" />
-          </span>
-          ChamaServ
+        <Link to="/" className="inline-flex items-center">
+          <img src={logo} alt="ChamaServ" className="h-12 w-auto bg-white/95 rounded-xl p-2" />
         </Link>
         <div className="space-y-4">
           <h2 className="font-display text-4xl font-bold leading-tight">Bem-vindo de volta.</h2>

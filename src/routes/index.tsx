@@ -7,6 +7,7 @@ import {
   Smartphone, MessageCircle, CalendarCheck, Flame, ArrowRight,
 } from "lucide-react";
 import heroPro from "@/assets/hero-pro.jpg";
+import logo from "@/assets/logo-chamaserv.png";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -42,11 +43,8 @@ function Index() {
       {/* NAV */}
       <header className="sticky top-0 z-40 backdrop-blur-md bg-background/85 border-b border-border/60">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <a href="/" className="flex items-center gap-2 font-display text-xl font-bold">
-            <span className="grid h-9 w-9 place-items-center rounded-xl text-primary-foreground" style={{ backgroundImage: "var(--gradient-flame)" }}>
-              <Flame className="h-5 w-5" />
-            </span>
-            ChamaServ
+          <a href="/" className="flex items-center gap-2">
+            <img src={logo} alt="ChamaServ" className="h-10 w-auto" />
           </a>
           <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
             <a href="#servicos" className="hover:text-foreground">Meu lar</a>
@@ -275,12 +273,7 @@ function Index() {
       {/* FOOTER */}
       <footer className="border-t border-border bg-card">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-6 py-10 md:flex-row md:items-center">
-          <div className="flex items-center gap-2 font-display text-lg font-bold">
-            <span className="grid h-8 w-8 place-items-center rounded-lg text-primary-foreground" style={{ backgroundImage: "var(--gradient-flame)" }}>
-              <Flame className="h-4 w-4" />
-            </span>
-            ChamaServ
-          </div>
+          <img src={logo} alt="ChamaServ" className="h-9 w-auto" />
           <p className="text-sm text-muted-foreground">© 2026 ChamaServ · Fortaleza-CE · Projeto Integrador SENAC</p>
           <div className="flex gap-5 text-sm text-muted-foreground">
             <a href="#" className="hover:text-foreground">Privacidade</a>
