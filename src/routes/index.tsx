@@ -180,6 +180,43 @@ function Index() {
         </div>
       </section>
 
+      {/* PROS */}
+      <section id="profissionais" className="mx-auto max-w-7xl px-6 py-20">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <h2 className="text-2xl font-bold md:text-3xl">Profissionais em destaque</h2>
+            <p className="mt-2 text-sm text-muted-foreground">Selecionados pelas melhores avaliações desta semana.</p>
+          </div>
+          <Button variant="outline" size="sm">Ver todos os profissionais</Button>
+        </div>
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+          {pros.map((p) => (
+            <article key={p.name} className="overflow-hidden rounded-3xl border border-border bg-card shadow-[var(--shadow-soft)] transition-transform hover:-translate-y-1">
+              <div className="relative h-32" style={{ backgroundImage: "var(--gradient-flame)" }}>
+                <div className="absolute bottom-0 left-6 translate-y-1/2">
+                  <div className="grid h-16 w-16 place-items-center rounded-2xl border-4 border-card bg-secondary text-secondary-foreground text-lg font-bold">
+                    {p.name.split(" ").map((n) => n[0]).join("").slice(0, 2)}
+                  </div>
+                </div>
+                <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-card/95 px-3 py-1 text-xs font-semibold text-foreground">
+                  <Star className="h-3.5 w-3.5 fill-primary text-primary" /> {p.rating}
+                </span>
+              </div>
+              <div className="px-6 pb-6 pt-12">
+                <h3 className="text-lg font-semibold">{p.name}</h3>
+                <p className="text-xs text-muted-foreground">{p.job}</p>
+                <div className="mt-3 flex items-center justify-between text-xs">
+                  <span className="flex items-center gap-1 text-muted-foreground"><MapPin className="h-3.5 w-3.5" />{p.area}</span>
+                  <span className="font-semibold text-primary">{p.price}</span>
+                </div>
+                <div className="mt-1 text-xs text-muted-foreground">{p.reviews} avaliações</div>
+                <Button variant="flame" size="sm" className="mt-4 w-full">Ver perfil</Button>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       {/* HOW IT WORKS */}
       <section id="como-funciona" className="bg-muted/40">
         <div className="mx-auto max-w-7xl px-6 py-24">
@@ -203,43 +240,6 @@ function Index() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* PROS */}
-      <section id="profissionais" className="mx-auto max-w-7xl px-6 py-24">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <div>
-            <h2 className="text-3xl font-bold md:text-4xl">Profissionais em destaque</h2>
-            <p className="mt-3 text-muted-foreground">Selecionados pelas melhores avaliações desta semana.</p>
-          </div>
-          <Button variant="outline">Ver todos os profissionais</Button>
-        </div>
-        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
-          {pros.map((p) => (
-            <article key={p.name} className="overflow-hidden rounded-3xl border border-border bg-card shadow-[var(--shadow-soft)] transition-transform hover:-translate-y-1">
-              <div className="relative h-40" style={{ backgroundImage: "var(--gradient-flame)" }}>
-                <div className="absolute bottom-0 left-6 translate-y-1/2">
-                  <div className="grid h-20 w-20 place-items-center rounded-2xl border-4 border-card bg-secondary text-secondary-foreground text-2xl font-bold">
-                    {p.name.split(" ").map((n) => n[0]).join("").slice(0, 2)}
-                  </div>
-                </div>
-                <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-card/95 px-3 py-1 text-xs font-semibold text-foreground">
-                  <Star className="h-3.5 w-3.5 fill-primary text-primary" /> {p.rating}
-                </span>
-              </div>
-              <div className="px-6 pb-6 pt-14">
-                <h3 className="text-xl font-semibold">{p.name}</h3>
-                <p className="text-sm text-muted-foreground">{p.job}</p>
-                <div className="mt-4 flex items-center justify-between text-sm">
-                  <span className="flex items-center gap-1 text-muted-foreground"><MapPin className="h-4 w-4" />{p.area}</span>
-                  <span className="font-semibold text-primary">{p.price}</span>
-                </div>
-                <div className="mt-2 text-xs text-muted-foreground">{p.reviews} avaliações</div>
-                <Button variant="flame" className="mt-5 w-full">Ver perfil</Button>
-              </div>
-            </article>
-          ))}
         </div>
       </section>
 
