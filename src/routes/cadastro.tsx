@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,6 +19,7 @@ export const Route = createFileRoute("/cadastro")({
 type Tipo = "cliente" | "prestador";
 
 function CadastroPage() {
+  const navigate = useNavigate();
   const [tipo, setTipo] = useState<Tipo>("cliente");
   const [form, setForm] = useState({ nome: "", email: "", telefone: "", senha: "", servico: "" });
   const [submitting, setSubmitting] = useState(false);
@@ -34,7 +35,10 @@ function CadastroPage() {
     setMsg(null);
     setTimeout(() => {
       setSubmitting(false);
-      setMsg(`Cadastro de ${tipo} simulado com sucesso! (ative o Lovable Cloud para salvar de verdade)`);
+      setMsg(`Cadastro de ${tipo} criado! Redirecionando...`);
+      if (tipo === "cliente") {
+        setTimeout(() => navigate({ to: "/solicitar" }), 600);
+      }
     }, 800);
   }
 
