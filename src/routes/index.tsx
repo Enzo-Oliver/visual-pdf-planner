@@ -127,7 +127,8 @@ function Index() {
       </section>
 
       {/* SERVICES with Tabs */}
-      <section id="servicos" className="mx-auto max-w-7xl px-6 py-20">
+      <section id="servicos" className="bg-muted/60">
+      <div className="mx-auto max-w-7xl px-6 py-20">
         <div className="flex flex-col items-center text-center">
           <h2 className="text-3xl font-bold md:text-4xl">Escolha o serviço ideal</h2>
           <p className="mt-3 max-w-xl text-muted-foreground">
@@ -176,6 +177,7 @@ function Index() {
             </article>
           ))}
         </div>
+      </div>
       </section>
 
       {/* PROS */}
@@ -216,7 +218,7 @@ function Index() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section id="como-funciona" className="bg-muted/40">
+      <section id="como-funciona" className="bg-secondary text-secondary-foreground">
         <div className="mx-auto max-w-7xl px-6 py-24">
           <div className="mx-auto max-w-2xl text-center">
             <span className="text-xs font-semibold uppercase tracking-widest text-primary">Como funciona</span>
@@ -228,13 +230,13 @@ function Index() {
               { icon: MessageCircle, title: "Converse com o pro", desc: "Chat direto com o profissional para alinhar tudo antes." },
               { icon: CalendarCheck, title: "Agende e avalie", desc: "Acompanhe o status, pague online e deixe sua avaliação." },
             ].map(({ icon: Icon, title, desc }, i) => (
-              <div key={title} className="relative rounded-3xl border border-border bg-card p-7 shadow-[var(--shadow-soft)]">
-                <span className="absolute right-6 top-6 font-display text-4xl font-bold text-primary/15">0{i + 1}</span>
+              <div key={title} className="relative rounded-3xl border border-white/10 bg-white/5 p-7 backdrop-blur-sm">
+                <span className="absolute right-6 top-6 font-display text-4xl font-bold text-primary/40">0{i + 1}</span>
                 <div className="grid h-12 w-12 place-items-center rounded-2xl bg-primary/10 text-primary">
                   <Icon className="h-6 w-6" />
                 </div>
                 <h3 className="mt-5 text-xl font-bold">{title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{desc}</p>
+                <p className="mt-2 text-sm text-secondary-foreground/75">{desc}</p>
               </div>
             ))}
           </div>
