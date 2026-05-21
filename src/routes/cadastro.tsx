@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Mail, Lock, User, Phone, ArrowLeft, Wrench, UserRound } from "lucide-react";
 import logo from "@/assets/logo-chamaserv.png";
+import { setUsuario } from "@/lib/solicitacoes";
 
 export const Route = createFileRoute("/cadastro")({
   component: CadastroPage,
@@ -35,10 +36,17 @@ function CadastroPage() {
     setMsg(null);
     setTimeout(() => {
       setSubmitting(false);
+      setUsuario({
+        nome: form.nome,
+        email: form.email,
+        tipo,
+        servico: tipo === "prestador" ? form.servico : undefined,
+      });
       setMsg(`Cadastro de ${tipo} criado! Redirecionando...`);
-      if (tipo === "cliente") {
-        setTimeout(() => navigate({ to: "/solicitar" }), 600);
-      }
+      setTimeout(
+        () => navigate({ to: tipo === "cliente" ? "/solicitar" : "/prestador" }),
+        600,
+      );
     }, 800);
   }
 

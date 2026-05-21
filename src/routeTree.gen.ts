@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SolicitarRouteImport } from './routes/solicitar'
+import { Route as PrestadorRouteImport } from './routes/prestador'
+import { Route as MinhasSolicitacoesRouteImport } from './routes/minhas-solicitacoes'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as CadastroRouteImport } from './routes/cadastro'
 import { Route as IndexRouteImport } from './routes/index'
@@ -17,6 +19,16 @@ import { Route as IndexRouteImport } from './routes/index'
 const SolicitarRoute = SolicitarRouteImport.update({
   id: '/solicitar',
   path: '/solicitar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrestadorRoute = PrestadorRouteImport.update({
+  id: '/prestador',
+  path: '/prestador',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MinhasSolicitacoesRoute = MinhasSolicitacoesRouteImport.update({
+  id: '/minhas-solicitacoes',
+  path: '/minhas-solicitacoes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -39,12 +51,16 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/cadastro': typeof CadastroRoute
   '/login': typeof LoginRoute
+  '/minhas-solicitacoes': typeof MinhasSolicitacoesRoute
+  '/prestador': typeof PrestadorRoute
   '/solicitar': typeof SolicitarRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cadastro': typeof CadastroRoute
   '/login': typeof LoginRoute
+  '/minhas-solicitacoes': typeof MinhasSolicitacoesRoute
+  '/prestador': typeof PrestadorRoute
   '/solicitar': typeof SolicitarRoute
 }
 export interface FileRoutesById {
@@ -52,20 +68,43 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/cadastro': typeof CadastroRoute
   '/login': typeof LoginRoute
+  '/minhas-solicitacoes': typeof MinhasSolicitacoesRoute
+  '/prestador': typeof PrestadorRoute
   '/solicitar': typeof SolicitarRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/cadastro' | '/login' | '/solicitar'
+  fullPaths:
+    | '/'
+    | '/cadastro'
+    | '/login'
+    | '/minhas-solicitacoes'
+    | '/prestador'
+    | '/solicitar'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/cadastro' | '/login' | '/solicitar'
-  id: '__root__' | '/' | '/cadastro' | '/login' | '/solicitar'
+  to:
+    | '/'
+    | '/cadastro'
+    | '/login'
+    | '/minhas-solicitacoes'
+    | '/prestador'
+    | '/solicitar'
+  id:
+    | '__root__'
+    | '/'
+    | '/cadastro'
+    | '/login'
+    | '/minhas-solicitacoes'
+    | '/prestador'
+    | '/solicitar'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CadastroRoute: typeof CadastroRoute
   LoginRoute: typeof LoginRoute
+  MinhasSolicitacoesRoute: typeof MinhasSolicitacoesRoute
+  PrestadorRoute: typeof PrestadorRoute
   SolicitarRoute: typeof SolicitarRoute
 }
 
@@ -76,6 +115,20 @@ declare module '@tanstack/react-router' {
       path: '/solicitar'
       fullPath: '/solicitar'
       preLoaderRoute: typeof SolicitarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/prestador': {
+      id: '/prestador'
+      path: '/prestador'
+      fullPath: '/prestador'
+      preLoaderRoute: typeof PrestadorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/minhas-solicitacoes': {
+      id: '/minhas-solicitacoes'
+      path: '/minhas-solicitacoes'
+      fullPath: '/minhas-solicitacoes'
+      preLoaderRoute: typeof MinhasSolicitacoesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -106,6 +159,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CadastroRoute: CadastroRoute,
   LoginRoute: LoginRoute,
+  MinhasSolicitacoesRoute: MinhasSolicitacoesRoute,
+  PrestadorRoute: PrestadorRoute,
   SolicitarRoute: SolicitarRoute,
 }
 export const routeTree = rootRouteImport
