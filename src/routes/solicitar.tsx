@@ -14,6 +14,7 @@ import {
   Search,
 } from "lucide-react";
 import logo from "@/assets/logo-chamaserv.png";
+import { addSolicitacao, getUsuario } from "@/lib/solicitacoes";
 
 export const Route = createFileRoute("/solicitar")({
   component: SolicitarPage,
@@ -55,7 +56,21 @@ function SolicitarPage() {
   }, [endereco]);
 
   function next() {
-    setStep((s) => (s < 4 ? ((s + 1) as 2 | 3 | 4) : s));
+    setStep((s) => {
+      const novo = s < 4 ? ((s + 1) as 2 | 3 | 4) : s;
+      if (s === 3 && novo === 4) {
+        const u = getUsuario();
+        addSolicitacao({
+          cliente: u?.email || "anonimo@chamaserv",
+          servico,
+          descricao,
+          endereco,
+          data,
+          hora,
+        });
+      }
+      return novo;
+    });
   }
   function prev() {
     setStep((s) => (s > 1 ? ((s - 1) as 1 | 2 | 3) : s));
