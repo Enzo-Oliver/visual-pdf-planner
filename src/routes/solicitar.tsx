@@ -270,8 +270,8 @@ function SolicitarPage() {
                   </p>
                 </div>
                 <div className="flex justify-center gap-2 pt-2">
-                  <Button variant="outline" onClick={() => navigate({ to: "/" })}>
-                    Voltar ao início
+                  <Button variant="outline" onClick={() => navigate({ to: "/minhas-solicitacoes" })}>
+                    Ver minhas solicitações
                   </Button>
                   <Button
                     variant="flame"
