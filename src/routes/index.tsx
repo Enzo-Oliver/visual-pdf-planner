@@ -88,7 +88,7 @@ function Index() {
                 <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
                   <MapPin className="h-4 w-4" />
                 </span>
-                <span>Disponível em mais de 30 bairros, <strong className="text-foreground">até mesmo para daqui 1 hora</strong>.</span>
+                <span>Disponível em mais de 121 bairros, <strong className="text-foreground">até mesmo para daqui 1 hora</strong>.</span>
               </li>
             </ul>
 
