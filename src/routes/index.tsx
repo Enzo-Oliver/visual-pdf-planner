@@ -3,11 +3,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import {
+  Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription,
+} from "@/components/ui/dialog";
+import {
   TrendingUp, ShieldCheck, MapPin, CheckCircle2, Clock, Star,
   Wrench, Paintbrush, Plug, Sparkles, Hammer, Scissors,
   Smartphone, MessageCircle, CalendarCheck, Flame, ArrowRight,
   Search, Bell, Home, MessageSquare, User, ClipboardList,
-  Sun, Moon,
+  Sun, Moon, BadgeCheck, Calendar, Briefcase, Award,
 } from "lucide-react";
 import logo from "@/assets/logo-chamaserv.png";
 
@@ -32,14 +35,36 @@ const servicesBusiness = [
 ];
 
 const pros = [
-  { name: "Carla Mendes", job: "Diarista premium", rating: 4.9, reviews: 142, area: "Aldeota · 2 km", price: "R$ 130/diária" },
-  { name: "Roberto Lima", job: "Eletricista certificado", rating: 5.0, reviews: 89, area: "Meireles · 3 km", price: "R$ 90/serviço" },
-  { name: "Juliana Souza", job: "Pintora residencial", rating: 4.8, reviews: 64, area: "Cocó · 5 km", price: "Orçamento" },
+  {
+    name: "Carla Mendes", job: "Diarista premium", rating: 4.9, reviews: 142, area: "Aldeota · 2 km", price: "R$ 130/diária",
+    about: "Especialista em limpeza residencial e organização de ambientes. Atuo com produtos eco-friendly e métodos que garantem um lar impecável sem agredir a saúde da sua família.",
+    experience: "8 anos", jobs: "1.200+", badges: ["Verificada", "Top avaliada", "Eco-friendly"],
+    specialties: ["Limpeza pós-obra", "Organização de closets", "Limpeza profunda"],
+    schedule: "Seg a Sáb · 7h às 18h",
+  },
+  {
+    name: "Roberto Lima", job: "Eletricista certificado", rating: 5.0, reviews: 89, area: "Meireles · 3 km", price: "R$ 90/serviço",
+    about: "Eletricista com certificação CREA e experiência em instalações residenciais e comerciais. Especialista em troca de quadros, instalação de tomadas inteligentes e reparos de emergência.",
+    experience: "12 anos", jobs: "850+", badges: ["Certificado CREA", "Emergência 24h", "Garantia 90 dias"],
+    specialties: ["Instalações elétricas", "Reparos emergenciais", "Tomadas inteligentes"],
+    schedule: "Seg a Dom · 6h às 22h",
+  },
+  {
+    name: "Juliana Souza", job: "Pintora residencial", rating: 4.8, reviews: 64, area: "Cocó · 5 km", price: "Orçamento",
+    about: "Pintora com formação em design de interiores. Transformo ambientes com cores que traduzem a personalidade de cada cliente. Trabalho com texturas, efeitos decorativos e pintura padronizada.",
+    experience: "6 anos", jobs: "420+", badges: ["Pintura fine art", "Consultoria de cor", "Material incluído"],
+    specialties: ["Texturas e efeitos", "Pintura externa", "Restauração de fachadas"],
+    schedule: "Seg a Sex · 8h às 17h",
+  },
 ];
+
+type Pro = typeof pros[number];
 
 function Index() {
   const [tab, setTab] = useState<"home" | "business">("home");
   const [dark, setDark] = useState(false);
+  const [selectedPro, setSelectedPro] = useState<Pro | null>(null);
+  const [openModal, setOpenModal] = useState(false);
   useEffect(() => {
     const stored = localStorage.getItem("chamaserv-theme");
     const isDark = stored ? stored === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -290,7 +315,11 @@ function Index() {
         </div>
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
           {pros.map((p) => (
-            <article key={p.name} className="overflow-hidden rounded-3xl border border-border bg-card shadow-[var(--shadow-soft)] transition-transform hover:-translate-y-1">
+            <article
+              key={p.name}
+              onClick={() => { setSelectedPro(p); setOpenModal(true); }}
+              className="cursor-pointer overflow-hidden rounded-3xl border border-border bg-card shadow-[var(--shadow-soft)] transition-transform hover:-translate-y-1"
+            >
               <div className="relative h-32" style={{ backgroundImage: "var(--gradient-flame)" }}>
                 <div className="absolute bottom-0 left-6 translate-y-1/2">
                   <div className="grid h-16 w-16 place-items-center rounded-2xl border-4 border-card bg-secondary text-secondary-foreground text-lg font-bold">
@@ -309,7 +338,7 @@ function Index() {
                   <span className="font-semibold text-primary">{p.price}</span>
                 </div>
                 <div className="mt-1 text-xs text-muted-foreground">{p.reviews} avaliações</div>
-                <Button variant="flame" size="sm" className="mt-4 w-full">Ver perfil</Button>
+                <Button variant="flame" size="sm" className="mt-4 w-full" onClick={(e) => { e.stopPropagation(); setSelectedPro(p); setOpenModal(true); }}>Ver perfil</Button>
               </div>
             </article>
           ))}
@@ -383,6 +412,81 @@ function Index() {
           </div>
         </div>
       </footer>
+
+      {/* PROFESSIONAL MODAL */}
+      <Dialog open={openModal} onOpenChange={setOpenModal}>
+        {selectedPro && (
+          <DialogContent className="max-w-lg">
+            <DialogHeader>
+              <div className="flex items-start gap-4">
+                <div className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-secondary text-secondary-foreground text-xl font-bold">
+                  {selectedPro.name.split(" ").map((n) => n[0]).join("").slice(0, 2)}
+                </div>
+                <div>
+                  <DialogTitle className="text-xl">{selectedPro.name}</DialogTitle>
+                  <DialogDescription className="text-sm">{selectedPro.job}</DialogDescription>
+                  <div className="mt-1 flex items-center gap-1 text-xs font-semibold text-primary">
+                    <Star className="h-3.5 w-3.5 fill-primary text-primary" /> {selectedPro.rating} · {selectedPro.reviews} avaliações
+                  </div>
+                </div>
+              </div>
+            </DialogHeader>
+
+            <div className="space-y-5">
+              <p className="text-sm leading-relaxed text-muted-foreground">{selectedPro.about}</p>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div className="flex items-center gap-2 rounded-xl border border-border bg-muted/60 px-3 py-2 text-xs">
+                  <Briefcase className="h-4 w-4 text-primary" />
+                  <span className="font-medium">{selectedPro.experience} de experiência</span>
+                </div>
+                <div className="flex items-center gap-2 rounded-xl border border-border bg-muted/60 px-3 py-2 text-xs">
+                  <Award className="h-4 w-4 text-primary" />
+                  <span className="font-medium">{selectedPro.jobs} serviços</span>
+                </div>
+              </div>
+
+              <div>
+                <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Diferenciais</h4>
+                <div className="flex flex-wrap gap-2">
+                  {selectedPro.badges.map((b) => (
+                    <span key={b} className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+                      <BadgeCheck className="h-3 w-3" /> {b}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Especialidades</h4>
+                <ul className="space-y-1.5">
+                  {selectedPro.specialties.map((s) => (
+                    <li key={s} className="flex items-center gap-2 text-sm text-foreground">
+                      <CheckCircle2 className="h-3.5 w-3.5 text-primary" /> {s}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="flex items-center gap-2 rounded-xl border border-border bg-muted/60 px-3 py-2 text-xs">
+                <Calendar className="h-4 w-4 text-primary" />
+                <span className="font-medium">{selectedPro.schedule}</span>
+              </div>
+
+              <div className="flex items-center justify-between rounded-xl bg-muted/60 px-4 py-3">
+                <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                  <MapPin className="h-3.5 w-3.5" /> {selectedPro.area}
+                </div>
+                <span className="text-sm font-bold text-primary">{selectedPro.price}</span>
+              </div>
+
+              <Button variant="flame" className="w-full" asChild>
+                <Link to="/solicitar">Solicitar serviço</Link>
+              </Button>
+            </div>
+          </DialogContent>
+        )}
+      </Dialog>
     </main>
   );
 }
