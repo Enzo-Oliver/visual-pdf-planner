@@ -35,9 +35,27 @@ const servicesBusiness = [
 ];
 
 const pros = [
-  { name: "Carla Mendes", job: "Diarista premium", rating: 4.9, reviews: 142, area: "Aldeota · 2 km", price: "R$ 130/diária" },
-  { name: "Roberto Lima", job: "Eletricista certificado", rating: 5.0, reviews: 89, area: "Meireles · 3 km", price: "R$ 90/serviço" },
-  { name: "Juliana Souza", job: "Pintora residencial", rating: 4.8, reviews: 64, area: "Cocó · 5 km", price: "Orçamento" },
+  {
+    name: "Carla Mendes", job: "Diarista premium", rating: 4.9, reviews: 142, area: "Aldeota · 2 km", price: "R$ 130/diária",
+    about: "Especialista em limpeza residencial e organização de ambientes. Atuo com produtos eco-friendly e métodos que garantem um lar impecável sem agredir a saúde da sua família.",
+    experience: "8 anos", jobs: "1.200+", badges: ["Verificada", "Top avaliada", "Eco-friendly"],
+    specialties: ["Limpeza pós-obra", "Organização de closets", "Limpeza profunda"],
+    schedule: "Seg a Sáb · 7h às 18h",
+  },
+  {
+    name: "Roberto Lima", job: "Eletricista certificado", rating: 5.0, reviews: 89, area: "Meireles · 3 km", price: "R$ 90/serviço",
+    about: "Eletricista com certificação CREA e experiência em instalações residenciais e comerciais. Especialista em troca de quadros, instalação de tomadas inteligentes e reparos de emergência.",
+    experience: "12 anos", jobs: "850+", badges: ["Certificado CREA", "Emergência 24h", "Garantia 90 dias"],
+    specialties: ["Instalações elétricas", "Reparos emergenciais", "Tomadas inteligentes"],
+    schedule: "Seg a Dom · 6h às 22h",
+  },
+  {
+    name: "Juliana Souza", job: "Pintora residencial", rating: 4.8, reviews: 64, area: "Cocó · 5 km", price: "Orçamento",
+    about: "Pintora com formação em design de interiores. Transformo ambientes com cores que traduzem a personalidade de cada cliente. Trabalho com texturas, efeitos decorativos e pintura padronizada.",
+    experience: "6 anos", jobs: "420+", badges: ["Pintura fine art", "Consultoria de cor", "Material incluído"],
+    specialties: ["Texturas e efeitos", "Pintura externa", "Restauração de fachadas"],
+    schedule: "Seg a Sex · 8h às 17h",
+  },
 ];
 
 function Index() {
