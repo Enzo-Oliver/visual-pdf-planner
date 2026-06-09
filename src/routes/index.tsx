@@ -58,9 +58,13 @@ const pros = [
   },
 ];
 
+type Pro = typeof pros[number];
+
 function Index() {
   const [tab, setTab] = useState<"home" | "business">("home");
   const [dark, setDark] = useState(false);
+  const [selectedPro, setSelectedPro] = useState<Pro | null>(null);
+  const [openModal, setOpenModal] = useState(false);
   useEffect(() => {
     const stored = localStorage.getItem("chamaserv-theme");
     const isDark = stored ? stored === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
