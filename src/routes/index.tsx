@@ -412,6 +412,81 @@ function Index() {
           </div>
         </div>
       </footer>
+
+      {/* PROFESSIONAL MODAL */}
+      <Dialog open={openModal} onOpenChange={setOpenModal}>
+        {selectedPro && (
+          <DialogContent className="max-w-lg">
+            <DialogHeader>
+              <div className="flex items-start gap-4">
+                <div className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-secondary text-secondary-foreground text-xl font-bold">
+                  {selectedPro.name.split(" ").map((n) => n[0]).join("").slice(0, 2)}
+                </div>
+                <div>
+                  <DialogTitle className="text-xl">{selectedPro.name}</DialogTitle>
+                  <DialogDescription className="text-sm">{selectedPro.job}</DialogDescription>
+                  <div className="mt-1 flex items-center gap-1 text-xs font-semibold text-primary">
+                    <Star className="h-3.5 w-3.5 fill-primary text-primary" /> {selectedPro.rating} · {selectedPro.reviews} avaliações
+                  </div>
+                </div>
+              </div>
+            </DialogHeader>
+
+            <div className="space-y-5">
+              <p className="text-sm leading-relaxed text-muted-foreground">{selectedPro.about}</p>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div className="flex items-center gap-2 rounded-xl border border-border bg-muted/60 px-3 py-2 text-xs">
+                  <Briefcase className="h-4 w-4 text-primary" />
+                  <span className="font-medium">{selectedPro.experience} de experiência</span>
+                </div>
+                <div className="flex items-center gap-2 rounded-xl border border-border bg-muted/60 px-3 py-2 text-xs">
+                  <Award className="h-4 w-4 text-primary" />
+                  <span className="font-medium">{selectedPro.jobs} serviços</span>
+                </div>
+              </div>
+
+              <div>
+                <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Diferenciais</h4>
+                <div className="flex flex-wrap gap-2">
+                  {selectedPro.badges.map((b) => (
+                    <span key={b} className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+                      <BadgeCheck className="h-3 w-3" /> {b}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Especialidades</h4>
+                <ul className="space-y-1.5">
+                  {selectedPro.specialties.map((s) => (
+                    <li key={s} className="flex items-center gap-2 text-sm text-foreground">
+                      <CheckCircle2 className="h-3.5 w-3.5 text-primary" /> {s}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="flex items-center gap-2 rounded-xl border border-border bg-muted/60 px-3 py-2 text-xs">
+                <Calendar className="h-4 w-4 text-primary" />
+                <span className="font-medium">{selectedPro.schedule}</span>
+              </div>
+
+              <div className="flex items-center justify-between rounded-xl bg-muted/60 px-4 py-3">
+                <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                  <MapPin className="h-3.5 w-3.5" /> {selectedPro.area}
+                </div>
+                <span className="text-sm font-bold text-primary">{selectedPro.price}</span>
+              </div>
+
+              <Button variant="flame" className="w-full" asChild>
+                <Link to="/solicitar">Solicitar serviço</Link>
+              </Button>
+            </div>
+          </DialogContent>
+        )}
+      </Dialog>
     </main>
   );
 }
