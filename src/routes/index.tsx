@@ -3,11 +3,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import {
+  Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription,
+} from "@/components/ui/dialog";
+import {
   TrendingUp, ShieldCheck, MapPin, CheckCircle2, Clock, Star,
   Wrench, Paintbrush, Plug, Sparkles, Hammer, Scissors,
   Smartphone, MessageCircle, CalendarCheck, Flame, ArrowRight,
   Search, Bell, Home, MessageSquare, User, ClipboardList,
-  Sun, Moon,
+  Sun, Moon, BadgeCheck, Calendar, Briefcase, Award,
 } from "lucide-react";
 import logo from "@/assets/logo-chamaserv.png";
 
