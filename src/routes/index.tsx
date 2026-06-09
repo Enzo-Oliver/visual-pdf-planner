@@ -315,7 +315,11 @@ function Index() {
         </div>
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
           {pros.map((p) => (
-            <article key={p.name} className="overflow-hidden rounded-3xl border border-border bg-card shadow-[var(--shadow-soft)] transition-transform hover:-translate-y-1">
+            <article
+              key={p.name}
+              onClick={() => { setSelectedPro(p); setOpenModal(true); }}
+              className="cursor-pointer overflow-hidden rounded-3xl border border-border bg-card shadow-[var(--shadow-soft)] transition-transform hover:-translate-y-1"
+            >
               <div className="relative h-32" style={{ backgroundImage: "var(--gradient-flame)" }}>
                 <div className="absolute bottom-0 left-6 translate-y-1/2">
                   <div className="grid h-16 w-16 place-items-center rounded-2xl border-4 border-card bg-secondary text-secondary-foreground text-lg font-bold">
@@ -334,7 +338,7 @@ function Index() {
                   <span className="font-semibold text-primary">{p.price}</span>
                 </div>
                 <div className="mt-1 text-xs text-muted-foreground">{p.reviews} avaliações</div>
-                <Button variant="flame" size="sm" className="mt-4 w-full">Ver perfil</Button>
+                <Button variant="flame" size="sm" className="mt-4 w-full" onClick={(e) => { e.stopPropagation(); setSelectedPro(p); setOpenModal(true); }}>Ver perfil</Button>
               </div>
             </article>
           ))}
