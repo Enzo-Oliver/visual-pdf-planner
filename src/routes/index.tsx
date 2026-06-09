@@ -5,8 +5,8 @@ import {
   TrendingUp, ShieldCheck, MapPin, CheckCircle2, Clock, Star,
   Wrench, Paintbrush, Plug, Sparkles, Hammer, Scissors,
   Smartphone, MessageCircle, CalendarCheck, Flame, ArrowRight,
+  Search, Bell, Home, MessageSquare, User, ClipboardList,
 } from "lucide-react";
-import heroPro from "@/assets/hero-pro.jpg";
 import logo from "@/assets/logo-chamaserv.png";
 
 export const Route = createFileRoute("/")({
@@ -66,10 +66,18 @@ function Index() {
 
       {/* HERO */}
       <section className="relative overflow-hidden">
+        {/* Navy backdrop blob like the splash screen */}
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute -top-32 -left-40 h-[520px] w-[520px] rounded-full bg-secondary/95" />
+          <div className="absolute -top-10 left-[28%] h-32 w-32 rounded-full bg-primary/90 blur-2xl opacity-60" />
+        </div>
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 py-14 lg:grid-cols-[1.05fr_1fr] lg:py-20">
           <div className="flex flex-col">
+            <span className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs font-semibold text-secondary shadow-sm">
+              <span className="h-2 w-2 rounded-full bg-primary" /> ChamaServ · Fortaleza-CE
+            </span>
             <h1 className="text-4xl font-extrabold leading-[1.1] tracking-tight md:text-6xl">
-              Serviços para o seu lar com <span className="text-primary">praticidade</span> e qualidade.
+              Conectando pessoas a <span className="text-primary">profissionais</span> qualificados.
             </h1>
             <ul className="mt-8 space-y-4 text-base text-muted-foreground">
               <li className="flex items-start gap-3">
@@ -106,19 +114,91 @@ function Index() {
             </div>
           </div>
 
-          <div className="relative">
-            {/* orange accent block */}
-            <div className="absolute -bottom-4 -right-4 hidden h-[88%] w-[88%] rounded-[2rem] bg-primary/90 lg:block" />
-            <img
-              src={heroPro}
-              alt="Profissional ChamaServ atendendo em Fortaleza"
-              width={1080}
-              height={1620}
-              className="relative h-[460px] w-full rounded-[2rem] object-cover shadow-[var(--shadow-soft)]"
-            />
-            <div className="absolute bottom-4 right-4 flex items-center gap-2 rounded-full bg-card px-4 py-2 text-xs font-semibold shadow-[var(--shadow-soft)]">
-              <span className="grid h-7 w-7 place-items-center rounded-full text-primary-foreground" style={{ backgroundImage: "var(--gradient-flame)" }}>
-                <Flame className="h-3.5 w-3.5" />
+          {/* Phone mockup — Tela Inicial */}
+          <div className="relative mx-auto w-full max-w-[340px]">
+            <div className="absolute -bottom-6 -right-6 hidden h-[88%] w-[88%] rounded-[2.5rem] bg-primary/90 lg:block" />
+            <div className="relative overflow-hidden rounded-[2.5rem] border-[10px] border-foreground/90 bg-background shadow-[var(--shadow-flame)]">
+              {/* status bar */}
+              <div className="flex items-center justify-between px-5 pt-3 text-[10px] font-semibold text-foreground/80">
+                <span>9:41</span>
+                <span className="flex items-center gap-1"><span className="h-1.5 w-1.5 rounded-full bg-foreground/70" /><span className="h-1.5 w-1.5 rounded-full bg-foreground/70" /><span className="h-1.5 w-1.5 rounded-full bg-foreground/70" /></span>
+              </div>
+              {/* location bar */}
+              <div className="flex items-center justify-between px-5 pt-4">
+                <span className="inline-flex items-center gap-1 text-xs font-semibold text-secondary">
+                  <MapPin className="h-3.5 w-3.5 text-primary" /> Fortaleza - CE
+                </span>
+                <Bell className="h-4 w-4 text-secondary" />
+              </div>
+              {/* greeting */}
+              <div className="px-5 pt-4">
+                <h3 className="text-xl font-extrabold leading-tight text-secondary">
+                  Olá, João! <span className="text-primary">👋</span>
+                </h3>
+                <p className="text-xl font-extrabold leading-tight text-secondary">Como podemos<br/>te ajudar hoje?</p>
+              </div>
+              {/* search */}
+              <div className="px-5 pt-4">
+                <div className="flex items-center gap-2 rounded-2xl border border-border bg-muted/70 p-1.5 pl-3">
+                  <span className="text-[11px] text-muted-foreground flex-1 truncate">Buscar serviço ou profissional...</span>
+                  <button className="grid h-8 w-8 place-items-center rounded-xl bg-primary text-primary-foreground">
+                    <Search className="h-4 w-4" />
+                  </button>
+                </div>
+              </div>
+              {/* categories */}
+              <div className="px-5 pt-5">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-secondary">Categorias populares</span>
+                  <span className="text-[10px] font-semibold text-primary">Ver todas</span>
+                </div>
+                <div className="mt-3 grid grid-cols-5 gap-2 text-center">
+                  {[
+                    { i: Plug, n: "Eletricista" },
+                    { i: Paintbrush, n: "Pintor" },
+                    { i: Sparkles, n: "Diarista" },
+                    { i: Hammer, n: "Pedreiro" },
+                    { i: Wrench, n: "Encanador" },
+                  ].map(({ i: I, n }) => (
+                    <div key={n} className="flex flex-col items-center gap-1">
+                      <span className="grid h-10 w-10 place-items-center rounded-xl bg-muted text-secondary">
+                        <I className="h-4 w-4" />
+                      </span>
+                      <span className="text-[9px] font-semibold text-secondary/80">{n}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              {/* verified card */}
+              <div className="px-5 pt-5">
+                <div className="flex items-center gap-3 rounded-2xl bg-secondary p-4 text-secondary-foreground">
+                  <div>
+                    <p className="text-xs font-bold leading-snug">Profissionais verificados<br/>e avaliados por quem<br/>realmente contratou!</p>
+                  </div>
+                  <span className="ml-auto grid h-9 w-9 place-items-center rounded-full bg-primary text-primary-foreground">
+                    <ShieldCheck className="h-5 w-5" />
+                  </span>
+                </div>
+              </div>
+              {/* tab bar */}
+              <div className="mt-5 grid grid-cols-5 border-t border-border bg-card py-2 text-[9px] font-semibold text-muted-foreground">
+                {[
+                  { i: Home, n: "Início", a: true },
+                  { i: Search, n: "Buscar" },
+                  { i: ClipboardList, n: "Solicitações" },
+                  { i: MessageSquare, n: "Mensagens" },
+                  { i: User, n: "Perfil" },
+                ].map(({ i: I, n, a }) => (
+                  <div key={n} className={`flex flex-col items-center gap-0.5 ${a ? "text-primary" : ""}`}>
+                    <I className="h-4 w-4" />
+                    <span>{n}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="absolute -left-4 bottom-10 flex items-center gap-2 rounded-full bg-card px-3 py-1.5 text-[11px] font-semibold shadow-[var(--shadow-soft)]">
+              <span className="grid h-6 w-6 place-items-center rounded-full text-primary-foreground" style={{ backgroundImage: "var(--gradient-flame)" }}>
+                <Flame className="h-3 w-3" />
               </span>
               +12 mil serviços
             </div>
