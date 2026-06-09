@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
 import {
   TrendingUp, ShieldCheck, MapPin, CheckCircle2, Clock, Star,
   Wrench, Paintbrush, Plug, Sparkles, Hammer, Scissors,
   Smartphone, MessageCircle, CalendarCheck, Flame, ArrowRight,
   Search, Bell, Home, MessageSquare, User, ClipboardList,
+  Sun, Moon,
 } from "lucide-react";
 import logo from "@/assets/logo-chamaserv.png";
 
@@ -37,6 +39,18 @@ const pros = [
 
 function Index() {
   const [tab, setTab] = useState<"home" | "business">("home");
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    const stored = localStorage.getItem("chamaserv-theme");
+    const isDark = stored ? stored === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setDark(isDark);
+    document.documentElement.classList.toggle("dark", isDark);
+  }, []);
+  const toggleDark = (v: boolean) => {
+    setDark(v);
+    document.documentElement.classList.toggle("dark", v);
+    localStorage.setItem("chamaserv-theme", v ? "dark" : "light");
+  };
   const services = tab === "home" ? servicesHome : servicesBusiness;
   return (
     <main className="min-h-screen bg-background text-foreground">
@@ -54,6 +68,11 @@ function Index() {
             <a href="#profissionais" className="hover:text-foreground">Ajuda</a>
           </nav>
           <div className="flex items-center gap-2">
+            <label className="mr-2 hidden items-center gap-2 rounded-full border border-border bg-card/60 px-2.5 py-1.5 text-xs text-muted-foreground sm:inline-flex">
+              <Sun className={`h-3.5 w-3.5 ${dark ? "" : "text-primary"}`} />
+              <Switch checked={dark} onCheckedChange={toggleDark} aria-label="Alternar tema escuro" />
+              <Moon className={`h-3.5 w-3.5 ${dark ? "text-primary" : ""}`} />
+            </label>
             <Button asChild variant="ghost" size="sm">
               <Link to="/login">Entrar</Link>
             </Button>
@@ -324,7 +343,7 @@ function Index() {
       </section>
 
       {/* CTA PROS */}
-      <section id="para-pros" className="mx-auto max-w-7xl px-6 pb-24">
+      <section id="para-pros" className="mx-auto max-w-7xl px-6 pt-20 pb-32 md:pt-24 md:pb-40">
         <div className="relative overflow-hidden rounded-3xl p-10 md:p-16" style={{ backgroundImage: "var(--gradient-flame)" }}>
           <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
           <div className="relative grid grid-cols-1 items-center gap-10 md:grid-cols-[1.3fr_1fr]">
@@ -353,8 +372,8 @@ function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-border bg-card">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-6 py-10 md:flex-row md:items-center">
+      <footer className="mt-8 border-t border-border bg-card">
+        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-6 py-12 md:flex-row md:items-center">
           <img src={logo} alt="ChamaServ" className="h-9 w-auto" />
           <p className="text-sm text-muted-foreground">© 2026 ChamaServ · Fortaleza-CE · Projeto Integrador SENAC</p>
           <div className="flex gap-5 text-sm text-muted-foreground">
