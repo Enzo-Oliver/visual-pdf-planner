@@ -106,7 +106,7 @@ function LoginPage() {
             </div>
 
             <label className="flex items-center gap-2 text-sm text-muted-foreground">
-              <input type="checkbox" className="h-4 w-4 rounded border-border accent-[oklch(0.68_0.22_38)]" />
+              <input type="checkbox" className="h-4 w-4 rounded border-border accent-primary" />
               Manter conectado
             </label>
 

@@ -116,7 +116,7 @@ function CadastroPage() {
             <Field id="senha" label="Senha" icon={Lock} type="password" value={form.senha} onChange={(v) => update("senha", v)} placeholder="Mínimo 6 caracteres" minLength={6} />
 
             <label className="flex items-start gap-2 text-xs text-muted-foreground">
-              <input type="checkbox" required className="mt-0.5 h-4 w-4 rounded border-border accent-[oklch(0.68_0.22_38)]" />
+              <input type="checkbox" required className="mt-0.5 h-4 w-4 rounded border-border accent-primary" />
               Concordo com os <a href="#" className="text-primary hover:underline">Termos</a> e{" "}
               <a href="#" className="text-primary hover:underline">Política de Privacidade</a>.
             </label>
