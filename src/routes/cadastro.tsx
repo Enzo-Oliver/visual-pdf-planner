@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Mail, Lock, User, Phone, ArrowLeft, Wrench, UserRound } from "lucide-react";
 import logo from "@/assets/logo-chamaserv.png";
 import { setUsuario } from "@/lib/solicitacoes";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export const Route = createFileRoute("/cadastro")({
   component: CadastroPage,
@@ -57,6 +58,7 @@ function CadastroPage() {
           <Link to="/" className="mb-8 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
             <ArrowLeft className="h-4 w-4" /> Voltar
           </Link>
+          <ThemeToggle className="mb-8 ml-3 align-middle" />
 
           <h1 className="font-display text-3xl font-bold tracking-tight">Crie sua conta</h1>
           <p className="mt-2 text-sm text-muted-foreground">
@@ -114,7 +116,7 @@ function CadastroPage() {
             <Field id="senha" label="Senha" icon={Lock} type="password" value={form.senha} onChange={(v) => update("senha", v)} placeholder="Mínimo 6 caracteres" minLength={6} />
 
             <label className="flex items-start gap-2 text-xs text-muted-foreground">
-              <input type="checkbox" required className="mt-0.5 h-4 w-4 rounded border-border accent-[oklch(0.68_0.22_38)]" />
+              <input type="checkbox" required className="mt-0.5 h-4 w-4 rounded border-border accent-primary" />
               Concordo com os <a href="#" className="text-primary hover:underline">Termos</a> e{" "}
               <a href="#" className="text-primary hover:underline">Política de Privacidade</a>.
             </label>

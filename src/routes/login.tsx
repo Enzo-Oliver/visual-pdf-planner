@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Mail, Lock, ArrowLeft } from "lucide-react";
 import logo from "@/assets/logo-chamaserv.png";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export const Route = createFileRoute("/login")({
   component: LoginPage,
@@ -57,6 +58,7 @@ function LoginPage() {
           <Link to="/" className="mb-8 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
             <ArrowLeft className="h-4 w-4" /> Voltar
           </Link>
+          <ThemeToggle className="mb-8 ml-3 align-middle" />
 
           <h1 className="font-display text-3xl font-bold tracking-tight">Entrar na sua conta</h1>
           <p className="mt-2 text-sm text-muted-foreground">
@@ -104,7 +106,7 @@ function LoginPage() {
             </div>
 
             <label className="flex items-center gap-2 text-sm text-muted-foreground">
-              <input type="checkbox" className="h-4 w-4 rounded border-border accent-[oklch(0.68_0.22_38)]" />
+              <input type="checkbox" className="h-4 w-4 rounded border-border accent-primary" />
               Manter conectado
             </label>
 

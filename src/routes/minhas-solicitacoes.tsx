@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, MapPin, CalendarDays, Clock, Wrench, Plus } from "lucide-react";
 import logo from "@/assets/logo-chamaserv.png";
 import { getUsuario, listSolicitacoes, logout, type Solicitacao } from "@/lib/solicitacoes";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export const Route = createFileRoute("/minhas-solicitacoes")({
   component: MinhasSolicitacoesPage,
@@ -36,6 +37,7 @@ function MinhasSolicitacoesPage() {
             <img src={logo} alt="ChamaServ" className="h-9 w-auto" />
           </Link>
           <div className="flex items-center gap-3">
+            <ThemeToggle />
             <span className="hidden text-sm text-muted-foreground sm:inline">Olá, {nome}</span>
             <button
               onClick={() => { logout(); navigate({ to: "/" }); }}
@@ -118,9 +120,9 @@ function Row({ icon: Icon, v }: { icon: React.ComponentType<{ className?: string
 
 function StatusBadge({ status }: { status: Solicitacao["status"] }) {
   const map = {
-    pendente: "bg-amber-100 text-amber-800",
-    aceita: "bg-blue-100 text-blue-800",
-    concluida: "bg-emerald-100 text-emerald-800",
+    pendente: "bg-status-pending text-status-pending-foreground",
+    aceita: "bg-status-accepted text-status-accepted-foreground",
+    concluida: "bg-status-done text-status-done-foreground",
   } as const;
   const label = { pendente: "Pendente", aceita: "Aceita", concluida: "Concluída" }[status];
   return (
