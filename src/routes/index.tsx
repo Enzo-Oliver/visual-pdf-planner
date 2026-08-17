@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
 import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription,
 } from "@/components/ui/dialog";
@@ -10,9 +9,10 @@ import {
   Wrench, Paintbrush, Plug, Sparkles, Hammer, Scissors,
   Smartphone, MessageCircle, CalendarCheck, Flame, ArrowRight,
   Search, Bell, Home, MessageSquare, User, ClipboardList,
-  Sun, Moon, BadgeCheck, Calendar, Briefcase, Award,
+  BadgeCheck, Calendar, Briefcase, Award,
 } from "lucide-react";
 import logo from "@/assets/logo-chamaserv.png";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export const Route = createFileRoute("/")({
   component: Index,

@@ -118,9 +118,9 @@ function Row({ icon: Icon, v }: { icon: React.ComponentType<{ className?: string
 
 function StatusBadge({ status }: { status: Solicitacao["status"] }) {
   const map = {
-    pendente: "bg-amber-100 text-amber-800",
-    aceita: "bg-blue-100 text-blue-800",
-    concluida: "bg-emerald-100 text-emerald-800",
+    pendente: "bg-status-pending text-status-pending-foreground",
+    aceita: "bg-status-accepted text-status-accepted-foreground",
+    concluida: "bg-status-done text-status-done-foreground",
   } as const;
   const label = { pendente: "Pendente", aceita: "Aceita", concluida: "Concluída" }[status];
   return (
