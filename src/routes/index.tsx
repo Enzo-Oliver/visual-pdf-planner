@@ -62,20 +62,8 @@ type Pro = typeof pros[number];
 
 function Index() {
   const [tab, setTab] = useState<"home" | "business">("home");
-  const [dark, setDark] = useState(false);
   const [selectedPro, setSelectedPro] = useState<Pro | null>(null);
   const [openModal, setOpenModal] = useState(false);
-  useEffect(() => {
-    const stored = localStorage.getItem("chamaserv-theme");
-    const isDark = stored ? stored === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
-    setDark(isDark);
-    document.documentElement.classList.toggle("dark", isDark);
-  }, []);
-  const toggleDark = (v: boolean) => {
-    setDark(v);
-    document.documentElement.classList.toggle("dark", v);
-    localStorage.setItem("chamaserv-theme", v ? "dark" : "light");
-  };
   const services = tab === "home" ? servicesHome : servicesBusiness;
   return (
     <main className="min-h-screen bg-background text-foreground">
@@ -93,11 +81,7 @@ function Index() {
             <a href="#profissionais" className="hover:text-foreground">Ajuda</a>
           </nav>
           <div className="flex items-center gap-2">
-            <label className="mr-2 hidden items-center gap-2 rounded-full border border-border bg-card/60 px-2.5 py-1.5 text-xs text-muted-foreground sm:inline-flex">
-              <Sun className={`h-3.5 w-3.5 ${dark ? "" : "text-primary"}`} />
-              <Switch checked={dark} onCheckedChange={toggleDark} aria-label="Alternar tema escuro" />
-              <Moon className={`h-3.5 w-3.5 ${dark ? "text-primary" : ""}`} />
-            </label>
+            <ThemeToggle className="mr-2 hidden sm:inline-flex" />
             <Button asChild variant="ghost" size="sm">
               <Link to="/login">Entrar</Link>
             </Button>
