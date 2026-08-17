@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, MapPin, CalendarDays, Clock, Wrench, Filter, CheckCircle2 } from "lucide-react";
 import logo from "@/assets/logo-chamaserv.png";
 import {
+import { ThemeToggle } from "@/components/theme-toggle";
   getUsuario,
   listSolicitacoes,
   logout,
@@ -60,6 +61,7 @@ function PrestadorPage() {
             <img src={logo} alt="ChamaServ" className="h-9 w-auto bg-white/95 rounded-md p-1" />
           </Link>
           <div className="flex items-center gap-3">
+            <ThemeToggle />
             <span className="hidden text-sm opacity-90 sm:inline">
               {user?.nome} {user?.servico && `· ${user.servico}`}
             </span>

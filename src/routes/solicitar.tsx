@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import logo from "@/assets/logo-chamaserv.png";
 import { addSolicitacao, getUsuario } from "@/lib/solicitacoes";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export const Route = createFileRoute("/solicitar")({
   component: SolicitarPage,
@@ -84,12 +85,15 @@ function SolicitarPage() {
           <Link to="/" className="flex items-center gap-2">
             <img src={logo} alt="ChamaServ" className="h-9 w-auto" />
           </Link>
-          <Link
-            to="/"
-            className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
-          >
-            <ArrowLeft className="h-4 w-4" /> Sair
-          </Link>
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+            <Link
+              to="/"
+              className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
+            >
+              <ArrowLeft className="h-4 w-4" /> Sair
+            </Link>
+          </div>
         </div>
       </header>
 
